@@ -8,12 +8,12 @@ const Header = () => {
   const { user } = useSelector((state) => state.auth);
   const [text, setText] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setText(e.target.value);
     if (e.key === "Enter") {
       console.log(text);
-      navigate("/search/"+text)
+      navigate("/search/" + text);
     }
   };
 
@@ -22,6 +22,7 @@ const Header = () => {
     <div>
       <Link to="/">Home </Link>
       <input onKeyUp={handleChange} placeholder="search post" name="text" />
+      {user?.role == "admin" ? <Link to="/admin">Admin </Link> : null}
 
       {user ? (
         <>
